@@ -18,53 +18,21 @@
 
 #include <iostream>
 
-class A
-{
-  public:
-
-    virtual int foo(int p)
-    {
-      std::cout << "A::foo(" << p << ")" << std::endl;
-    }
-};
-
-class B : public A
-{
-  public:
-    virtual int foo(int p)
-    {
-      std::cout << "B::foo(" << p << ")" << std::endl;
-    }
-};
-
-class C
-{
-};
-
-class D : public C, public A
-{
-  public:
-    virtual int foo(int p)
-    {
-      std::cout << "D::foo(" << p << ")" << std::endl;
-    }
-};
-
 int foo(int x)
 {
-  std::cout << "foo(" << x << ")" << std::endl;
-  return 1;
+    std::cout << "foo(" << x << ")" << std::endl;
+    return 1;
 }
 
 
 
 int main(void)
 {
-  XiaomiGamepadInterface *iFace = new XiaomiGamepadInterface();
-   //static function
+    XiaomiGamepadInterface *iFace = new XiaomiGamepadInterface();
+    //static function
 
-  //Delegate<int, int> d1(foo);
-  iFace->RegisterAButton(&foo);
+    //Delegate<int, int> d1(foo);
+    iFace->BUTTON_A_DOWN(&foo);
 
     iFace->Start("/dev/input/event0");
 }

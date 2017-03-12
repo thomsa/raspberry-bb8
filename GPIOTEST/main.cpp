@@ -3,69 +3,52 @@
  *      Simple test program to test the wiringPi functions
  *      PWM test
  */
-#include <iostream>
 
 #include <wiringPi.h>
-#include <softPwm.h>
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdint.h>
-#include <TestClass.h>
-
-using namespace std;
-
-
 
 int main (void)
 {
     int pin ;
     int l ;
-    bool litUp;
 
     printf ("Raspberry Pi wiringPi PWM test program\n") ;
 
-
-    if (wiringPiSetup() == -1)
+    if (wiringPiSetup () == -1)
+    {
+        printf("Exiting");
         exit (1) ;
+    }
+    for (pin = 0 ; pin < 8 ; ++pin)
+    {
+        pinMode (pin, OUTPUT) ;
+        digitalWrite (pin, LOW) ;
+    }
 
-    cout << "Setting outputs\n";
+    pinMode (1, PWM_OUTPUT) ;
+    pwmSetMode(PWM_MODE_MS);
+    pwmSetClock(1920);
+    pwmSetRange(200);
 
 
-        pinMode (0, OUTPUT) ;
-        digitalWrite (0, LOW) ;
+//
+//    printf("1");
 
-    pinMode (1, INPUT) ;
-
-    softPwmCreate(0, 0, 300);
-    //bool litUp;
-    litUp = false;
-
-    for (;;)
+//    printf("2");
+    while (true)
     {
 
-
-        if(digitalRead(1) > 0)
-        {
-            if(litUp == false){
-                digitalWrite (0, HIGH) ;
-                litUp = true;
-                printf("You pushed the button\n");
-            }
-
-        }
-        else
-        {
-            if(litUp == true)
-            {    digitalWrite (0, LOW) ;
-                litUp = false;
-                printf("You released the button\n");
-            }
-
-        }
-        //delay (1) ;
-
+        pwmWrite(1, 5); // right
+        delay(5000);
+        pwmWrite(1, 13); //middle
+        delay(5000);
+         pwmWrite(1, 23.9); //left
+        delay(5000);
     }
 
     return 0 ;
 }
+

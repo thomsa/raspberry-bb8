@@ -2,7 +2,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-
+#include <string>
 #include <cstring>
 
 #include <errno.h>
@@ -23,7 +23,37 @@
 #include <Delegate.hpp>
 
 CallbackType AButtonCallback;
-void XiaomiGamepadInterface::RegisterAButton(CallbackType callback)
+void XiaomiGamepadInterface::BUTTON_A_DOWN(CallbackType callback)
+{
+    AButtonCallback = callback;
+}
+
+
+void XiaomiGamepadInterface::BUTTON_A_UP(CallbackType callback)
+{
+    AButtonCallback = callback;
+}
+void XiaomiGamepadInterface::BUTTON_B_DOWN(CallbackType callback)
+{
+    AButtonCallback = callback;
+}
+void XiaomiGamepadInterface::BUTTON_B_UP(CallbackType callback)
+{
+    AButtonCallback = callback;
+}
+void XiaomiGamepadInterface::BUTTON_Y_DOWN(CallbackType callback)
+{
+    AButtonCallback = callback;
+}
+void XiaomiGamepadInterface::BUTTON_Y_UP(CallbackType callback)
+{
+    AButtonCallback = callback;
+}
+void XiaomiGamepadInterface::BUTTON_X_DOWN(CallbackType callback)
+{
+    AButtonCallback = callback;
+}
+void XiaomiGamepadInterface::BUTTON_X_UP(CallbackType callback)
 {
     AButtonCallback = callback;
 }
@@ -66,7 +96,9 @@ void XiaomiGamepadInterface::Start(char* input)
                    libevdev_event_type_get_name(ev.type),
                    libevdev_event_code_get_name(ev.type, ev.code),
                    ev.value);
-            if(libevdev_event_code_get_name(ev.type, ev.code) =="BTN_SOUTH")
+                    std::string s = std::string(libevdev_event_code_get_name(ev.type, ev.code)) ;
+
+           if(s == "BTN_SOUTH")
             {
                 AButtonCallback(50);
             }

@@ -1,12 +1,9 @@
 # depslib dependency file v1.0
-1488930324 source:/home/pi/GPIO_PROJECTS/GPIOTEST/main.cpp
-	<iostream>
+1489356697 source:/home/pi/GPIO_PROJECTS/GPIOTEST/main.cpp
 	<wiringPi.h>
-	<softPwm.h>
 	<stdio.h>
 	<stdlib.h>
 	<stdint.h>
-	<TestClass.h>
 
 1487892542 source:/home/pi/GPIO_PROJECTS/GPIOTEST/src/TestClass.cpp
 	"TestClass.h"

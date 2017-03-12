@@ -1,7 +1,7 @@
 # depslib dependency file v1.0
 1488998218 source:/home/pi/GPIO_PROJECTS/BTInputRead/BTINPUTREAD/libevdev.cpp
 
-1489014363 source:/home/pi/GPIO_PROJECTS/BTInputRead/BTINPUTREAD/main.cpp
+1489358146 source:/home/pi/GPIO_PROJECTS/BTInputRead/BTINPUTREAD/main.cpp
 	<stdio.h>
 	<stdlib.h>
 	<cstring>
@@ -14,10 +14,11 @@
 	<Delegate.hpp>
 	<iostream>
 
-1489013871 source:/home/pi/GPIO_PROJECTS/BTInputRead/BTINPUTREAD/src/XiaomiGamepadInterface.cpp
+1489360707 source:/home/pi/GPIO_PROJECTS/BTInputRead/BTINPUTREAD/src/XiaomiGamepadInterface.cpp
 	"XiaomiGamepadInterface.h"
 	<stdio.h>
 	<stdlib.h>
+	<string>
 	<cstring>
 	<errno.h>
 	<unistd.h>
@@ -29,8 +30,8 @@
 	<iostream>
 	<Delegate.hpp>
 
-1489014397 /home/pi/GPIO_PROJECTS/BTInputRead/BTINPUTREAD/include/XiaomiGamepadInterface.h
+1489357105 /home/pi/GPIO_PROJECTS/BTInputRead/BTINPUTREAD/include/XiaomiGamepadInterface.h
 	<Delegate.hpp>
 
-1489013869 /home/pi/GPIO_PROJECTS/BTInputRead/BTINPUTREAD/include/Delegate.hpp
+1489357275 /home/pi/GPIO_PROJECTS/BTInputRead/BTINPUTREAD/include/Delegate.hpp
 
