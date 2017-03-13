@@ -7,7 +7,7 @@
 
 #include <unistd.h>
 #include <fcntl.h>
-
+#include <wiringPi.h>
 
 #include <libevdev-1.0/libevdev/libevdev.h>
 #include <libevdev-1.0/libevdev/libevdev-uinput.h>
@@ -18,21 +18,57 @@
 
 #include <iostream>
 
-int foo(int x)
+int foo(GamePadEvent* x)
 {
-    std::cout << "foo(" << x << ")" << std::endl;
+    std::cout  << x->GetName() << std::endl;
     return 1;
 }
 
-
+int turnServoRight(GamePadEvent* x) {
+std::cout  << "turn right"  << std::endl;
+pwmWrite(1, 5); // right
+}
+int turnServoLeft(GamePadEvent* x) {
+std::cout  << "turn left" << std::endl;
+pwmWrite(1, 23.9); //left
+}
+int turnServoCenter(GamePadEvent* x) {
+std::cout  << "turn middle" << std::endl;
+pwmWrite(1, 13); //middle
+}
 
 int main(void)
 {
-    XiaomiGamepadInterface *iFace = new XiaomiGamepadInterface();
-    //static function
 
-    //Delegate<int, int> d1(foo);
-    iFace->BUTTON_A_DOWN(&foo);
+    int pin ;
+    int l ;
+
+    printf ("Raspberry Pi wiringPi PWM test program\n") ;
+
+    if (wiringPiSetup () == -1)
+    {
+        printf("Exiting");
+        exit (1) ;
+    }
+    for (pin = 0 ; pin < 8 ; ++pin)
+    {
+        pinMode (pin, OUTPUT) ;
+        digitalWrite (pin, LOW) ;
+    }
+
+    pinMode (1, PWM_OUTPUT) ;
+    pwmSetMode(PWM_MODE_MS);
+    pwmSetClock(1920);
+    pwmSetRange(200);
+
+
+
+
+    XiaomiGamepadInterface *iFace = new XiaomiGamepadInterface();
+
+    iFace->DPAD_RIGHT_DOWN(&turnServoRight);
+    iFace ->DPAD_LEFT_DOWN(&turnServoLeft);
+    iFace->DPAD_DEFAULT(&turnServoCenter);
 
     iFace->Start("/dev/input/event0");
 }
