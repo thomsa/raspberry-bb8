@@ -33,7 +33,6 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
-		<Unit filename="include/Delegate.hpp" />
 		<Unit filename="include/XiaomiGamepadInterface.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/XiaomiGamepadInterface.cpp" />

@@ -41,6 +41,8 @@ CallbackType DPadLeftDownCallback;
 CallbackType DPadLeftUpCallback;
 CallbackType DPadDefaultCallback;
 
+CallbackType ABS_Z_MOVED;
+
 
 void XiaomiGamepadInterface::BUTTON_A_DOWN(CallbackType callback)
 {
@@ -122,6 +124,11 @@ void XiaomiGamepadInterface::DPAD_DEFAULT(CallbackType callback)
     DPadDefaultCallback = callback;
 }
 
+void XiaomiGamepadInterface::ABS_Z_CALLBACK(CallbackType callback)
+{
+    ABS_Z_MOVED = callback;
+}
+
 void XiaomiGamepadInterface::Start(char* input)
 {
     struct libevdev *dev = NULL;
@@ -186,6 +193,11 @@ void XiaomiGamepadInterface::Start(char* input)
 
                 else if(DPadDefaultCallback != NULL)
                     DPadDefaultCallback(gamePadEvent);
+            }
+
+            else if(gamePadEvent->GetName() == "ABS_Z")
+            {
+                ABS_Z_MOVED(gamePadEvent);
             }
 
 

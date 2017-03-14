@@ -59,7 +59,7 @@ public:
     void DPAD_RIGHT_DOWN(CallbackType callback);
     void DPAD_DEFAULT(CallbackType callback);
 
-
+    void ABS_Z_CALLBACK(CallbackType callback);
 
     void Start(char* input);
 protected:

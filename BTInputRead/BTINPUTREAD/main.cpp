@@ -37,6 +37,20 @@ std::cout  << "turn middle" << std::endl;
 pwmWrite(1, 13); //middle
 }
 
+int absZMoved(GamePadEvent* x) {
+    float middlePoint = 0.1;
+    float pwmValue = middlePoint * x->GetValue();
+
+    if(pwmValue < 5)
+            pwmValue = 5;
+    if(pwmValue > 23.9)
+            pwmValue = 23.9;
+
+
+    pwmWrite(1, pwmValue); //middle
+
+}
+
 int main(void)
 {
 
@@ -69,8 +83,8 @@ int main(void)
     iFace->DPAD_RIGHT_DOWN(&turnServoRight);
     iFace ->DPAD_LEFT_DOWN(&turnServoLeft);
     iFace->DPAD_DEFAULT(&turnServoCenter);
-
-    iFace->Start("/dev/input/event0");
+    iFace->ABS_Z_CALLBACK(&absZMoved);
+    iFace->Start("/dev/input/event4");
 }
 //
 //int main()
